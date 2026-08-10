@@ -23,14 +23,14 @@ class LoginController extends Controller
         ]);
 
         if (! Auth::attempt($credentials)) {
-            throw ValidationException::withMessages([
-                'email' => 'Email atau password salah.',
-            ]);
+            return back()
+                ->withInput($request->only('email'))
+                ->with('error', 'Email atau password salah.');
         }
 
         $request->session()->regenerate();
 
-        return redirect()->route('comments.index');
+        return redirect()->route('comments.index')->with('success', 'Berhasil masuk.');
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -40,6 +40,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('comments.index') ->with('success', 'Anda telah berhasil keluar.');
+        return redirect()->route('comments.index')->with('success', 'Anda telah berhasil keluar.');
     }
 }
