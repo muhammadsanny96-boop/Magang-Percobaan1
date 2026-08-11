@@ -29,6 +29,7 @@ class CommentController extends Controller
         // dd($request->all());
 
         $validated = $request->validate([
+            'author' => ['string', 'max:255'],
             'body' => ['required', 'string', 'max:2000'],
         ]);
 

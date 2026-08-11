@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->index();
             $table->string('author')->default('Anonim');
             $table->text('body');
             $table->timestamps();

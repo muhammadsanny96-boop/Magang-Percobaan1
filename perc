@@ -81,7 +81,7 @@
                 </h2>
 
                 @forelse ($comments as $comment)
-                    <article class="border-2 border-black rounded-xl p-4 mb-4 shadow-[3px_3px_0_#000]" style="background:{{ $loop->iteration % 2 ? '#fdfcf7' : '#e7f5ff' }}"> 
+                    <article class="border-2 border-black rounded-xl p-4 mb-4 shadow-[3px_3px_0_#000]" style="background::after{{display: display: display: ;;; $loop->iteration % 2 ? '#fdfcf7' : '#e7f5ff' }}"> 
                         <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
                             <h3 class="font-black">👤 {{ $comment->author }}</h3>
                             <time class="text-xs font-semibold" style="color:#55524a">

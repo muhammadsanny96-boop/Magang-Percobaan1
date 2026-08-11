@@ -19,7 +19,7 @@
     </div>
 
 
-    
+
 @endif
 
 
@@ -155,7 +155,7 @@
                 @csrf
 
                 <div class="mb-4">
-                    <label for="body" class="block font-bold mb-2 text-sm">Komentar sebagai <span class="text-amber-600">{{ auth()->user()?->name ?? 'Tamu' }}</span><span class="text-red-600">*</span></label>
+                    <label for="body" class="block font-bold mb-2 text-sm">Komentar sebagai <span class="text-amber-600">{{ auth()->user()?->name ?? 'Tamu' }}</span><span class="text-red-600">.</span></label>
                     <textarea
                         id="body"
                         name="body"
