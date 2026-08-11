@@ -25,6 +25,9 @@ class CommentController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Cek 1: Apakah request masuk ke sini?
+        // dd($request->all());
+
         $validated = $request->validate([
             'body' => ['required', 'string', 'max:2000'],
         ]);
@@ -32,7 +35,7 @@ class CommentController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        Comment::create([
+        $comment = Comment::create([
             'author' => $user ? $user->name : 'Anonim',
             'body' => trim($validated['body']),
         ]);

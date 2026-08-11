@@ -14,13 +14,16 @@
 
         {{-- Tombol Close X --}}
         <button @click="show = false" class="ml-4 font-black hover:opacity-75">
-            ✕
+            X
         </button>
     </div>
+
+
+    
 @endif
 
 
-        <title>Komentar</title>
+        <title>COBA</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700,900" rel="stylesheet" />
@@ -138,8 +141,8 @@
                 @endauth
             </div>
 
-            <h1 class="text-4xl font-black mb-2 tracking-tight" style="color:#1b1b18">💬 Komentar</h1>
-            <p class="text-lg mb-8" style="color:#55524a">Tulis komentarmu, history-nya tercatat di bawah.</p>
+            <h1 class="text-4xl font-black mb-2 tracking-tight" style="color:#1b1b18">💬 COBA</h1>
+            <p class="text-lg mb-8" style="color:#55524a">Tulis komentarmu, history nya tercatat di bawah.</p>
 
             @if (session('success'))
                 <div class="border-2 border-black bg-lime-300 text-black font-bold px-4 py-3 rounded-xl mb-6 shadow-[4px_4px_0_#000]">

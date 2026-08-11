@@ -1,43 +1,72 @@
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-        <h2 class="text-3xl font-semibold mb-6 text-center text-slate-900">Masuk</h2>
+@extends('layouts.app', ['title' => 'Masuk - Komentar'])
 
-        @if (session('error'))
-            <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('login') }}" class="space-y-4">
-            @csrf
-
-            <div>
-                <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
-                    class="mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" />
-                @error('email')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
+@section('content')
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-8">
+                <a href="{{ route('comments.index') }}" class="text-2xl font-black tracking-tight inline-block" style="color:#1b1b18">💬 COBA</a>
             </div>
 
-            <div>
-                <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
-                <input id="password" type="password" name="password" required
-                    class="mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" />
-                @error('password')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
+            <div class="border-4 border-black bg-white rounded-2xl p-6 sm:p-8 shadow-[6px_6px_0_#1b1b18]">
+                <h2 class="text-3xl font-black mb-1 text-center" style="color:#1b1b18">Selamat Datang!</h2>
+                <p class="text-center text-lg mb-6" style="color:#55524a">Silakan masuk ke akun Anda.</p>
+
+                @if (session('error'))
+                    <div class="border-2 border-black bg-red-200 text-red-800 font-bold px-4 py-3 rounded-xl mb-4 shadow-[3px_3px_0_#000]">
+                        <span class="mr-2">❌</span> {{ session('error') }}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('login') }}" class="space-y-5">
+                    @csrf
+
+                    <div>
+                        <label for="email" class="block font-bold mb-2 text-sm">Email <span class="text-red-600">*</span></label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autofocus
+                            placeholder="contoh@email.com"
+                            class="w-full border-2 border-black rounded-xl px-4 py-3 font-medium focus:outline-none focus:ring-4 focus:ring-amber-300"
+                            style="background:#fdfcf7"
+                        />
+                        @error('email')
+                            <p class="mt-2 text-sm font-bold text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="password" class="block font-bold mb-2 text-sm">Password <span class="text-red-600">*</span></label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            required
+                            placeholder="••••••••"
+                            class="w-full border-2 border-black rounded-xl px-4 py-3 font-medium focus:outline-none focus:ring-4 focus:ring-amber-300"
+                            style="background:#fdfcf7"
+                        />
+                        @error('password')
+                            <p class="mt-2 text-sm font-bold text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full bg-amber-400 hover:bg-amber-300 active:translate-y-0.5 active:shadow-[2px_2px_0_#000] border-2 border-black text-black font-black text-base px-6 py-3 rounded-xl shadow-[4px_4px_0_#000] transition-all cursor-pointer"
+                    >
+                        Masuk
+                    </button>
+                </form>
+
+                <p class="mt-6 text-center text-sm font-medium" style="color:#55524a">
+                    Belum punya akun?
+                    <a href="{{ route('register') }}" class="font-bold text-amber-600 hover:underline">Daftar di sini</a>
+                </p>
             </div>
-
-            <button type="submit"
-                class="w-full rounded-lg bg-indigo-600 px-4 py-2 text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                Masuk
-            </button>
-        </form>
-
-        <p class="mt-6 text-center text-sm text-slate-600">
-            Belum punya akun?
-            <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-700">Daftar</a>
-        </p>
+        </div>
     </div>
-</div>
+@endsection
