@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment extends Model
+class Post extends Model
 {
     use HasFactory;
 
@@ -16,12 +16,17 @@ class Comment extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'user_id',
-        'author',
+        'title',
         'body',
+        'user_id',
+        'image',
     ];
 
+    // get protected protected $table = 'posts';
+    // protected $primaryKey = 'id';
+
     /**
+     * Get the user that owns the post.
      */
     public function user(): BelongsTo
     {

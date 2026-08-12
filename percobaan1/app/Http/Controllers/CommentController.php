@@ -15,9 +15,22 @@ class CommentController extends Controller
      */
     public function index(): View
     {
-        $comments = Comment::latest()->get();
+        // Mengambil komentar terbaru, dan juga data 'user' yang berelasi
+        // untuk menghindari N+1 problem (Eager Loading).
+        $comments = Comment::with('user')->latest()->get();
 
         return view('comments.index', compact('comments'));
+    }
+
+    public function myComments(): View
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        // Mengambil komentar milik user yang sedang login
+        $comments = $user->comments()->latest()->get();
+
+        return view('comments.mine', compact('comments'));
     }
 
     /**
@@ -25,20 +38,17 @@ class CommentController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Cek 1: Apakah request masuk ke sini?
-        // dd($request->all());
-
         $validated = $request->validate([
-            'author' => ['string', 'max:255'],
             'body' => ['required', 'string', 'max:2000'],
         ]);
 
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        $comment = Comment::create([
-            'author' => $user ? $user->name : 'Anonim',
-            'body' => trim($validated['body']),
+        // Menyimpan komentar dengan relasi ke user yang sedang login
+        $user->comments()->create([
+            'body' => $validated['body'],
+            'author' => $user->name,
         ]);
 
         return redirect()->route('comments.index')->with('success', 'Komentar berhasil dikirim!');
