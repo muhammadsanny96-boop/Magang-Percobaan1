@@ -76,9 +76,12 @@
                                     @error('comment')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
                                     @enderror
-                                    <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm">
+                                    <tbody>
+                                        <button type="submit" class="mt-2 bg--500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm">
                                         Kirim
                                     </button>
+                                    </tbody>
+
                                 </div>
                             </div>
                         </form>
